@@ -18,7 +18,15 @@ export class MotorService {
     console.log(this.urlbase + '/ListarMotores');
     return this.http.get(this.urlbase + '/ListarMotores').pipe(
       map(response => response as Motor[])
-    )
+    );
+  }
+
+  obtenerListaMotoresPorPrecio(preciomenor: number, preciomayor: number) : Observable<any>
+  {
+    console.log(this.urlbase + '/ListarMotoresPorPrecio/' + preciomenor + '/' + preciomayor);
+    return this.http.get(this.urlbase + '/ListarMotoresPorPrecio/' + preciomenor + '/' + preciomayor).pipe(
+      map(response => response as Motor[])
+    );
   }
 
   registrarMotor(nuevomotor : Object)

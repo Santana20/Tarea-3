@@ -10,8 +10,9 @@ import { MotorService } from '../motor.service';
 })
 export class ListarMotorComponent implements OnInit {
 
-  motores : Observable<Motor[]>
-
+  motores : Observable<Motor[]>;
+  preciomenor : number;
+  preciomayor : number; 
   constructor(private serviciomotor : MotorService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,13 @@ export class ListarMotorComponent implements OnInit {
   {
     console.log("llamando al servicio de ListarMotores");
     this.serviciomotor.obtenerListaMotores().subscribe(
+      motores => this.motores = motores
+    )
+  }
+
+  ListaMotoresPorPrecio()
+  {
+    this.serviciomotor.obtenerListaMotoresPorPrecio(this.preciomenor, this.preciomayor).subscribe(
       motores => this.motores = motores
     )
   }
